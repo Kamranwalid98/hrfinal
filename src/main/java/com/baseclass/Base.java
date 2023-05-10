@@ -1,5 +1,7 @@
 package com.baseclass;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -16,9 +18,12 @@ public class Base {
 	//public void driversetup() throws InterruptedException {
 		
 		WebDriverManager.chromedriver().setup();
-		 WebDriver driver = new ChromeDriver();
-		 driver.get("http://streamshrapplication-env.eba-srcdj8aw.us-east-1.elasticbeanstalk.com/");
-   	     driver.manage().window().maximize();
+		WebDriver driver = new ChromeDriver();
+		driver.manage().deleteAllCookies(); 
+	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		          
+		driver.get("http://streamshrapplication-env.eba-srcdj8aw.us-east-1.elasticbeanstalk.com/");
+   	    driver.manage().window().maximize();
      	Loginpage n1 = new Loginpage(driver);
      	//Dashboard n2 = new Dashboard(driver);
      	Applyleave n3 =new Applyleave(driver);
