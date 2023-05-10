@@ -14,6 +14,7 @@ import com.baseclass.Base;
 public class Applyleave extends Base{
  public WebDriver driver;
      
+ 
      
      By Apply = By.linkText("Apply");
      By FromDate =By.id("startDate");
@@ -51,7 +52,7 @@ public class Applyleave extends Base{
   	  
   	     Thread.sleep(2000);
           driver.findElement(FromDate).click();
-          WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(7));
+        //  WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(7));
 			/*
 			 * wait.until(ExpectedConditions.visibilityOfElementLocated(DateTable)).click();
 			 * wait.until(ExpectedConditions.visibilityOfElementLocated(Startdate)).click()
