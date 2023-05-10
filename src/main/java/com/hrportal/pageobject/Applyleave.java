@@ -12,10 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.baseclass.Base;
 
 public class Applyleave extends Base{
- public WebDriver driver;
-     
- 
-     
+ public WebDriver driver; 
      By Apply = By.linkText("Apply");
      By FromDate =By.id("startDate");
      By EndDate =By.id("endDate");
