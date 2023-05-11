@@ -30,8 +30,8 @@ public class Base {
      	n1.Employee();
     	//n2.Employee_Dashboard();
     	n3.Apply_leave();
-    	Viewleave n4 =new Viewleave(driver);
-     	n4.View_leaves();
+    	//Viewleave n4 =new Viewleave(driver);
+     	//n4.View_leaves();
      	
 	}
 
