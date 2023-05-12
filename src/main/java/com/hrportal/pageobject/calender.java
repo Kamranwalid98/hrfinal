@@ -28,12 +28,12 @@ public class calender {
 		 Thread.sleep(7000);
          new WebDriverWait(driver,Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("ui-datepicker-div")));
     	 Thread.sleep(7000);
-		String monthyearval=driver.findElement(By.className("ui-datepicker-title")).getText();
-		Thread.sleep(7000);
-		System.out.println(monthyearval);
-		String month=monthyearval.split(" ")[0].trim();
-		String year=monthyearval.split(" ")[1].trim();
-	while(!(month.equals("June")&& year.equals("2023"))) {
+		 String monthyearval=driver.findElement(By.className("ui-datepicker-title")).getText();
+		 Thread.sleep(7000);
+		 System.out.println(monthyearval);
+		 String month=monthyearval.split(" ")[0].trim();
+		 String year=monthyearval.split(" ")[1].trim();
+	while(!(month.equals("June") && year.equals("2023"))) {
 	driver.findElement(By.xpath("//a[@title='Next']")).click();	
 	 monthyearval=driver.findElement(By.className("ui-datepicker-title")).getText();
 	Thread.sleep(7000);

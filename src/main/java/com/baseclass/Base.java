@@ -21,17 +21,18 @@ public class Base {
 		WebDriver driver = new ChromeDriver();
 		driver.manage().deleteAllCookies(); 
 	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	    driver.manage().window().maximize();
 		          
 		driver.get("http://streamshrapplication-env.eba-srcdj8aw.us-east-1.elasticbeanstalk.com/");
-   	    driver.manage().window().maximize();
+   	    
      	Loginpage n1 = new Loginpage(driver);
      	//Dashboard n2 = new Dashboard(driver);
-     	Applyleave n3 =new Applyleave(driver);
+     	//Applyleave n3 =new Applyleave(driver);
      	n1.Employee();
     	//n2.Employee_Dashboard();
-    	n3.Apply_leave();
-    	//Viewleave n4 =new Viewleave(driver);
-     	//n4.View_leaves();
+    	//n3.applyLeave();
+    	Viewleave n4 =new Viewleave(driver);
+     	n4.View_leaves();
      	
 	}
 
