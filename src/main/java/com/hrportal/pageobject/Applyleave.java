@@ -1,13 +1,10 @@
 package com.hrportal.pageobject;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,50 +21,94 @@ public class Applyleave extends Base{
  	   this.driver=driver;
        }
      public void applyLeave() throws InterruptedException {
-    	 System.out.println("applyleavepage");
-    	 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		 WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(7));
-		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Apply")));
-		 driver.findElement(FromDatePicker).click();
+    	
+    	 WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(7));
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(Apply)).click();
 		 Thread.sleep(2000);
-		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Calendar"))).click();
-  	     Thread.sleep(2000);
-  	    String date="2023-05-18";
-     	String dateArr[]=date.split("-");
-    	String day=dateArr[2];
-    	String month=dateArr[1];
-   	    String year=dateArr[0];
-     	String beforeXpath="//*[@id=\"ui-datepicker-div\"]/table/tbody/tr[";
-   	    String afterXpath="]/td[@data-month=\"";
-   	    String afterXpath1="\"][@data-year=\"2023\"]";
-   	    String afterXpath2="/a[contains(text(),'18')]\")";
-   	    final int totalWeekDays=7;
-   	
-   	
-    	for(int rowNum=1; rowNum>=7;rowNum++) {
-   	    for(int colNum=2; colNum>=7;colNum++) {
- 
-   	    String dayVal=driver.findElement(By.xpath(beforeXpath+rowNum+afterXpath+colNum+afterXpath1+afterXpath2)).getText();
-   	    System.out.println(dayVal);
-   			
-   		if(dayVal.equals(day)) {
-   		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(beforeXpath+rowNum+afterXpath+colNum+afterXpath1+afterXpath2))).click();
-   	   			
-   		       }
-   			
-   	     	}
-      	}
-    	System.out.println("end");
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(FromDatePicker)).click();
+		 
+		 
+         new WebDriverWait(driver,Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("ui-datepicker-div")));
+    	 Thread.sleep(2000);
+		 String monthyearval=driver.findElement(By.className("ui-datepicker-title")).getText();
+		 Thread.sleep(2000);
+		 System.out.println(monthyearval);
+		 String month=monthyearval.split(" ")[0].trim();
+		 String year=monthyearval.split(" ")[1].trim();
+	while(!(month.equals("June") && year.equals("2023"))) {
+	driver.findElement(By.xpath("//a[@title='Next']")).click();	
+	 monthyearval=driver.findElement(By.className("ui-datepicker-title")).getText();
+	Thread.sleep(2000);
+	System.out.println(monthyearval);
+	 month=monthyearval.split(" ")[0].trim();
+	 year=monthyearval.split(" ")[1].trim();
+	}
+	driver.findElement(By.xpath("//a[text()='23']")).click();
+	Thread.sleep(2000);
+		 
+	wait.until(ExpectedConditions.visibilityOfElementLocated(EndDatePicker)).click();
+	Thread.sleep(2000);
+	 new WebDriverWait(driver,Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("ui-datepicker-div")));
+	 Thread.sleep(2000);
+	 String newmonthyearval=driver.findElement(By.className("ui-datepicker-title")).getText();
+	 Thread.sleep(2000);
+	 System.out.println(newmonthyearval);
+	 String newmonth=newmonthyearval.split(" ")[0].trim();
+	 String newyear=newmonthyearval.split(" ")[1].trim();
+    while(!(newmonth.equals("June") && newyear.equals("2023"))) {
+        driver.findElement(By.xpath("//a[@title='Next']")).click();
+        Thread.sleep(2000);
+        newmonthyearval=driver.findElement(By.className("ui-datepicker-title")).getText();
+        Thread.sleep(2000);
+        System.out.println(newmonthyearval);
+        newmonth=newmonthyearval.split(" ")[0].trim();
+        newyear=newmonthyearval.split(" ")[1].trim();
 
-        driver.findElement(Reason).sendKeys("sick_leave");
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(submitBtn)); 
-        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
+  }
+    driver.findElement(By.xpath("//*[@id=\"ui-datepicker-div\"]/table/tbody/tr[4]/td[6]/a")).click();
+	Thread.sleep(2000);
+	driver.findElement(Reason).sendKeys("Planned leave");
+	  WebElement element = wait.until(ExpectedConditions.elementToBeClickable(submitBtn)); 
+      ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
+      Thread.sleep(3000);
+	
      }
 
-    
-  	  
-  	  
+	
+	
+	
 
-    }
-
-
+}
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 
+    	 

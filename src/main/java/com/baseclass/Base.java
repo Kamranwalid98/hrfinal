@@ -27,12 +27,12 @@ public class Base {
    	    
      	Loginpage n1 = new Loginpage(driver);
      	//Dashboard n2 = new Dashboard(driver);
-     	//Applyleave n3 =new Applyleave(driver);
+     	Applyleave n3 =new Applyleave(driver);
      	n1.Employee();
     	//n2.Employee_Dashboard();
-    	//n3.applyLeave();
-    	Viewleave n4 =new Viewleave(driver);
-     	n4.View_leaves();
+    	n3.applyLeave();
+    	//Viewleave n4 =new Viewleave(driver);
+     	//n4.View_leaves();
      	
 	}
 

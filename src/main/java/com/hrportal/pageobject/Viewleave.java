@@ -16,9 +16,7 @@ public class Viewleave extends Base{
 	 public WebDriver driver;
 	 By viewleaves = By.xpath("//*[@id=\"ui-basic\"]/ul/li[1]/a");
 	 By viewleawicon= By.xpath(" /html/body/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/div/table/tbody/tr[1]/td[7]/center/a[1]/i");
-	                           // /html/body/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/div/table/tbody/tr[2]/td[7]/center/a[1]/i
-	 //By leaveDetail=By.xpath(" /html/body/div/div[2]/div/div/div/div/div/div/div/form/fieldset/div[1]/div[1]/div/div[2]/text()");
-	// By delete_applied_leaves = By.xpath("/html/body/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/div/table/tbody/tr[2]/td[7]/center/a[3]/i");
+	                          
 	 By leaveDetail=By.id("tableBody");
 	 public Viewleave(WebDriver driver) {
   	   this.driver=driver;
@@ -28,41 +26,34 @@ public class Viewleave extends Base{
     	
     	 WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
          wait.until(ExpectedConditions.elementToBeClickable(viewleaves)).click();
-       
-        String viewleavebtn=driver.findElement(leaveDetail).getText();
-       System.out.println(viewleavebtn);
-		  if(viewleavebtn.contains("32	PL	2023-05-31	2023-05-31	1.00	Pending	\r\n"
-		  		+ "")) {
-		  System.out.println("null"); 
+         Select dropdown = new Select(driver.findElement(By.xpath("/html/body/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[1]/div[1]/div/label/select")));
+		  dropdown.selectByVisibleText("100");  
 		  
-		  }
-		  else{
-			  Select dropdown = new Select(driver.findElement(By.xpath("/html/body/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[1]/div[1]/div/label/select")));
-			  dropdown.selectByVisibleText("100");  
+        String viewleavebtn=driver.findElement(leaveDetail).getText();
+        Thread.sleep(2000);
+        System.out.println(viewleavebtn);
+        
+        String AfterEditPencil="\"]/i";
+        String BeforePencil="//*[@id=\"editLeave";
+        String toview="PL ";
+		 
+			  for(int ii = 1;ii<=100;ii++) {
+				  while(viewleavebtn.contains(" PL 2023-05-18 2023-05-18 1.00 Pending")) {
+			  driver.findElement(By.xpath(BeforePencil+ii+AfterEditPencil)).click();
+				  }
+			  Thread.sleep(3000);
+			  }
+		  
+			
 			  
-			  String viewleavebtn1= driver.findElement(leaveDetail).getText();
-			  System.out.println("hello");
-			  if() {
-				driver.get
-			}
-			  
-			 // wait.until(ExpectedConditions.elementToBeClickable(viewleawicon)).click();
-			  
-		  }
+			 
 		 
         
-         Thread.sleep(7000);
+      
         
         // driver.navigate().back();
          driver.close();
     	
-    	// driver.findElement(delete_applied_leaves).click();
-    	 
-               Dimension lastRowcount=driver.findElement(By.xpath("//*[@id=\"tableBody\"]")).findElement(By.tagName("tr")).getSize();
-         For (int i=0; i<=lastRowcount; )
-         "/html/body/div/div[1]/div[2]/div/div/div/div/div/div/div/div/div[2]/div/table/tbody/tr["i"]/td[3]"
-    	 
- 		
+	 }
 
-}
 }
