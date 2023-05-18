@@ -20,7 +20,7 @@ public class Applyleave extends Base{
 	 public Applyleave(WebDriver driver) {
  	   this.driver=driver;
        }
-     public void applyLeave() throws InterruptedException {
+     public String[] applyLeave() throws InterruptedException {
     	
     	 WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(7));
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(Apply)).click();
@@ -35,7 +35,7 @@ public class Applyleave extends Base{
 		 System.out.println(monthyearval);
 		 String month=monthyearval.split(" ")[0].trim();
 		 String year=monthyearval.split(" ")[1].trim();
-	while(!(month.equals("June") && year.equals("2023"))) {
+	while(!(month.equals("July") && year.equals("2023"))) {
 	driver.findElement(By.xpath("//a[@title='Next']")).click();	
 	 monthyearval=driver.findElement(By.className("ui-datepicker-title")).getText();
 	Thread.sleep(2000);
@@ -43,7 +43,11 @@ public class Applyleave extends Base{
 	 month=monthyearval.split(" ")[0].trim();
 	 year=monthyearval.split(" ")[1].trim();
 	}
-	driver.findElement(By.xpath("//a[text()='23']")).click();
+	driver.findElement(By.xpath("//a[text()='20']")).click();
+	String STRDatevalue=driver.findElement(FromDatePicker).getText();
+	System.out.println(STRDatevalue + "IT IS THE START DATE VALUE ---");
+	
+	
 	Thread.sleep(2000);
 		 
 	wait.until(ExpectedConditions.visibilityOfElementLocated(EndDatePicker)).click();
@@ -65,12 +69,17 @@ public class Applyleave extends Base{
         newyear=newmonthyearval.split(" ")[1].trim();
 
   }
-    driver.findElement(By.xpath("//*[@id=\"ui-datepicker-div\"]/table/tbody/tr[4]/td[6]/a")).click();
+    driver.findElement(By.xpath("//*[@id=\"ui-datepicker-div\"]/table/tbody/tr[9]/td[6]/a")).click();
+    String ENDDatevalue=driver.findElement(EndDatePicker).getText();
+	System.out.println(ENDDatevalue + "IT IS THE END DATE VALUE ---");
 	Thread.sleep(2000);
 	driver.findElement(Reason).sendKeys("Planned leave");
 	  WebElement element = wait.until(ExpectedConditions.elementToBeClickable(submitBtn)); 
       ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
       Thread.sleep(3000);
+      driver.navigate().refresh();
+      return new String[] {STRDatevalue, STRDatevalue};
+	
 	
      }
 
